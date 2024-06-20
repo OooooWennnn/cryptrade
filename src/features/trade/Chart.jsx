@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
-import { Line } from 'react-chartjs-2';
-import 'chart.js/auto';
-import { Chart } from 'chart.js';
-import zoomPlugin from 'chartjs-plugin-zoom';
+import { useEffect, useRef, useState } from "react";
+import { Line } from "react-chartjs-2";
+import "chart.js/auto";
+import { Chart } from "chart.js";
+import zoomPlugin from "chartjs-plugin-zoom";
 // import 'chartjs-adapter-date-fns';
 
 Chart.register(zoomPlugin);
@@ -19,14 +19,14 @@ function CryptoChart({ selectedCoin }) {
       const body = { symbol: selectedCoin };
       async function getCoinHistory() {
         const response = await fetch(
-          'http://localhost:3000/api/trade/history',
+          "http://localhost:3000/api/trade/history",
           {
-            method: 'POST',
+            method: "POST",
             headers: {
-              'Content-type': 'application/json',
+              "Content-type": "application/json",
             },
             body: JSON.stringify(body),
-          },
+          }
         );
 
         if (!response.ok) {
@@ -43,7 +43,7 @@ function CryptoChart({ selectedCoin }) {
 
         setDataSet(data.map((d) => d.price));
         setDateSet(
-          data.map((d) => new Date(d.date).toISOString().split('T')[0]),
+          data.map((d) => new Date(d.date).toISOString().split("T")[0])
         );
 
         console.log(data);
@@ -51,7 +51,7 @@ function CryptoChart({ selectedCoin }) {
       }
       getCoinHistory();
     },
-    [selectedCoin],
+    [selectedCoin]
   );
 
   useEffect(() => {
@@ -69,16 +69,16 @@ function CryptoChart({ selectedCoin }) {
     responsive: true,
     animation: {
       duration: 1000,
-      easing: 'easeOutQuart',
+      easing: "easeOutQuart",
     },
     interaction: {
-      mode: 'nearest',
+      mode: "nearest",
     },
     plugins: {
       zoom: {
         pan: {
           enabled: true,
-          mode: 'x',
+          mode: "x",
         },
         zoom: {
           limit: {
@@ -92,7 +92,7 @@ function CryptoChart({ selectedCoin }) {
             enabled: true,
             speed: 0.005,
           },
-          mode: 'x',
+          mode: "x",
         },
       },
       legend: {
@@ -100,7 +100,7 @@ function CryptoChart({ selectedCoin }) {
       },
       title: {
         display: true,
-        text: selectedCoin?.split('CAD'),
+        text: selectedCoin?.split("CAD"),
       },
     },
     scales: {
@@ -130,7 +130,7 @@ function CryptoChart({ selectedCoin }) {
         grid: {
           display: false,
         },
-        position: 'right',
+        position: "right",
       },
     },
     beginAtZero: false,
@@ -140,25 +140,25 @@ function CryptoChart({ selectedCoin }) {
     labels: dateSet,
     datasets: [
       {
-        label: '',
+        label: "",
         data: dataSet,
         drawActiveElementsOnTop: false,
-        cubicInterpolationMode: 'monotone',
+        cubicInterpolationMode: "monotone",
         fill: {
-          target: 'origin',
-          above: '#dbeafe',
+          target: "origin",
+          above: "#dbeafe",
         },
         pointRadius: 0,
         pointHitRadius: 10,
         pointHoverRadius: 4,
-        borderJoinStyle: 'round',
-        borderColor: '#93c5fd',
+        borderJoinStyle: "round",
+        borderColor: "#93c5fd",
         borderWidth: 2,
       },
     ],
   };
 
-  console.log(dateSet);
+  // console.log(dateSet);
 
   return (
     <div className="w-full">

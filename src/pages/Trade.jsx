@@ -1,16 +1,16 @@
-import { useCallback, useState } from 'react';
-import TradeList from '../features/trade/TradeList';
-import Heading from '../ui/Heading';
-import CryptoChart from '../features/trade/Chart';
-import BuySell from '../features/trade/BuySell';
+import { useCallback, useState } from "react";
+import TradeList from "../features/trade/TradeList";
+import Heading from "../ui/Heading";
+import CryptoChart from "../features/trade/Chart";
+import BuySell from "../features/trade/BuySell";
 
 function Trade() {
   // const { isLoading, data, error } = useQueryCrypto_Ndax();
 
-  const [selectedCoin, setSelectedCoin] = useState('BTCCAD');
+  const [selectedCoin, setSelectedCoin] = useState("BTCCAD");
 
   const handleSelectCoin = useCallback((coin) => {
-    setSelectedCoin(coin?.trading_pairs?.split('_').join(''));
+    setSelectedCoin(coin?.trading_pairs?.split("_").join(""));
   }, []);
 
   // useEffect(
@@ -39,7 +39,7 @@ function Trade() {
           />
           <div className="flex flex-col flex-grow overflow-hidden gap-5">
             <CryptoChart selectedCoin={selectedCoin && selectedCoin} />
-            <BuySell />
+            {/* <BuySell /> */}
             {/* <div>{selectedCoin}</div> */}
             {/* <div>{selectedCoin?.last_price}</div>
             <div>{selectedCoin?.quote_volume}</div>

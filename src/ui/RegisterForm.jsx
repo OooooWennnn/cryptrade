@@ -1,10 +1,10 @@
-import { NavLink } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import Button from './Button';
-import Logo from './Logo';
+import { NavLink, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import Button from "./Button";
+import Logo from "./Logo";
 
 const inputStyle =
-  'border-b w-full border-gray-300 px-2 focus:outline-none focus:border-b-indigo-600';
+  "border-b w-full border-gray-300 px-2 focus:outline-none focus:border-b-indigo-600";
 
 function RegisterForm({ onClick }) {
   const {
@@ -14,20 +14,24 @@ function RegisterForm({ onClick }) {
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate();
+
   const onSubmit = async (data) => {
     console.log(JSON.stringify(data));
     try {
-      const response = await fetch('http://localhost:3000/api/auth/register', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3000/api/auth/register", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
       const result = await response.json();
-      console.log('Server response: ', result);
+      console.log("Server response: ", result);
+      alert("Register successful!");
+      navigate("/");
     } catch (error) {
-      console.log('Submit error: ', error);
+      console.log("Submit error: ", error);
     }
   };
 
@@ -48,15 +52,17 @@ function RegisterForm({ onClick }) {
           placeholder="First Name"
           className={inputStyle}
           autoComplete="off"
-          {...register('firstName', {
-            required: 'First Name is required',
+          {...register("firstName", {
+            required: "First Name is required",
             minLength: {
               value: 2,
-              message: 'First Name must be at least 2 characters',
+              message: "First Name must be at least 2 characters",
             },
           })}
         />
-        {errors.username && console.log(errors.username.message)}
+        {errors.firstName && (
+          <span className="text-red-600">{errors.firstName.message}</span>
+        )}
         <input
           id="lastName"
           name="lastName"
@@ -64,15 +70,17 @@ function RegisterForm({ onClick }) {
           placeholder="Last Name"
           className={inputStyle}
           autoComplete="off"
-          {...register('lastName', {
-            required: 'Last Name is required',
+          {...register("lastName", {
+            required: "Last Name is required",
             minLength: {
               value: 3,
-              message: 'Last Name must be at least 3 characters',
+              message: "Last Name must be at least 3 characters",
             },
           })}
         />
-        {errors.username && console.log(errors.username.message)}
+        {errors.lastName && (
+          <span className="text-red-600">{errors.lastName.message}</span>
+        )}
       </div>
       <input
         id="username"
@@ -81,15 +89,17 @@ function RegisterForm({ onClick }) {
         placeholder="Username"
         className={inputStyle}
         autoComplete="off"
-        {...register('username', {
-          required: 'Username is required',
+        {...register("username", {
+          required: "Username is required",
           minLength: {
             value: 5,
-            message: 'Username must be at least 5 characters',
+            message: "Username must be at least 5 characters",
           },
         })}
       />
-      {errors.username && console.log(errors.username.message)}
+      {errors.username && (
+        <span className="text-red-600">{errors.username.message}</span>
+      )}
       <input
         id="password"
         name="password"
@@ -97,15 +107,17 @@ function RegisterForm({ onClick }) {
         placeholder="Password"
         className={inputStyle}
         autoComplete="off"
-        {...register('password', {
-          required: 'Password is required',
+        {...register("password", {
+          required: "Password is required",
           minLength: {
             value: 8,
-            message: 'Password must be at least 8 characters',
+            message: "Password must be at least 8 characters",
           },
         })}
       />
-      {errors.username && console.log(errors.username.message)}
+      {errors.password && (
+        <span className="text-red-600">{errors.password.message}</span>
+      )}
       <input
         id="email"
         name="email"
@@ -113,18 +125,20 @@ function RegisterForm({ onClick }) {
         placeholder="Email"
         className={inputStyle}
         autoComplete="off"
-        {...register('email', {
-          required: 'Email is required',
+        {...register("email", {
+          required: "Email is required",
           minLength: {
             value: 8,
-            message: 'Email must be at least 8 characters',
+            message: "Email must be at least 8 characters",
           },
         })}
       />
-      {errors.username && console.log(errors.username.message)}
+      {errors.email && (
+        <span className="text-red-600">{errors.email.message}</span>
+      )}
       <Button>Register</Button>
       <div className="text-sm">
-        Already a member?{' '}
+        Already a member?{" "}
         <NavLink
           onClick={onClick}
           className="text-sm text-gray-700 border-b border-transparent hover:border-b-gray-700"

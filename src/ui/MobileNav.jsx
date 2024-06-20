@@ -1,8 +1,8 @@
-import NavItem from './NavItem';
-import { AiOutlineMenu } from 'react-icons/ai';
-import { AiOutlineClose } from 'react-icons/ai';
-import Logo from './Logo';
-import { useAuth } from '../context/AuthContext';
+import NavItem from "./NavItem";
+import { AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
+import Logo from "./Logo";
+import { useAuth } from "../context/AuthContext";
 
 function MobileNav({ isOpen, onClick }) {
   const { isAuthenticated, logout } = useAuth();
@@ -31,15 +31,15 @@ function MobileNav({ isOpen, onClick }) {
           <Logo />
         </h1>
         <ul className="flex flex-col grow items-center text-lg pt-2">
-          <NavItem isMobile={true} to="dashboard" onClick={onClick} />
+          {/* <NavItem isMobile={true} to="dashboard" onClick={onClick} /> */}
           <NavItem isMobile={true} to="trade" onClick={onClick} />
-          <NavItem isMobile={true} to="wallet" onClick={onClick} />
+          {/* <NavItem isMobile={true} to="wallet" onClick={onClick} /> */}
           <NavItem isMobile={true} to="premium" onClick={onClick} />
           {!isAuthenticated ? (
             <NavItem isMobile={true} to="login" onClick={onClick} />
           ) : (
             <>
-              <NavItem isMobile={true} to="Profile" onClick={onClick} />
+              {/* <NavItem isMobile={true} to="Profile" onClick={onClick} /> */}
               <NavItem isMobile={true} to="logout" onClick={handleLogout} />
             </>
           )}
