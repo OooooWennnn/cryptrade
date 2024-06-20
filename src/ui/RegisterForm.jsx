@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Button from "./Button";
 import Logo from "./Logo";
+import config from "../config";
 
 const inputStyle =
   "border-b w-full border-gray-300 px-2 focus:outline-none focus:border-b-indigo-600";
@@ -19,7 +20,7 @@ function RegisterForm({ onClick }) {
   const onSubmit = async (data) => {
     console.log(JSON.stringify(data));
     try {
-      const response = await fetch("http://localhost:3000/api/auth/register", {
+      const response = await fetch(`${config.BACKEND_URL}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

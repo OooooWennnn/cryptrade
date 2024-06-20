@@ -1,7 +1,7 @@
-import TradeListNav from './TradeListNav';
-import TradeListRow from './TradeListRow';
-import { useQueryCrypto_Ndax } from '../useQueryCrypto_Ndax';
-import Loading from '../../ui/Loading';
+import TradeListNav from "./TradeListNav";
+import TradeListRow from "./TradeListRow";
+import { useQueryCrypto_Ndax } from "../useQueryCrypto_Ndax";
+import Loading from "../../ui/Loading";
 
 function TradeList({ onClick }) {
   const { isLoading, data, error } = useQueryCrypto_Ndax();

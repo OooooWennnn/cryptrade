@@ -1,13 +1,13 @@
 export function getCryptoPremiumArr(
   crypto_Ndax = [],
   crypto_Bithum = {},
-  currencyInfo = 0,
+  currencyInfo = 0
 ) {
   if (crypto_Ndax && crypto_Bithum) {
     return crypto_Ndax
       ?.map((coin) => {
         const ticker =
-          coin.lowest_ask !== 0 && coin.trading_pairs.split('_')[0];
+          coin.lowest_ask !== 0 && coin.trading_pairs.split("_")[0];
         const bithumCoin = crypto_Bithum[ticker] && crypto_Bithum[ticker];
 
         if (bithumCoin && ticker) {

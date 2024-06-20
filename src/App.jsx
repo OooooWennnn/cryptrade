@@ -34,7 +34,7 @@ function App() {
           <AuthProvider>
             <Routes>
               <Route element={<AppLayout />}>
-                <Route index element={<Navigate replace to={"dashboard"} />} />
+                <Route index element={<Navigate replace to={"premium"} />} />
                 <Route
                   path="dashboard"
                   element={

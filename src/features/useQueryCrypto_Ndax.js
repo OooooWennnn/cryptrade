@@ -1,8 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
+import config from "../config";
 
 export function useQueryCrypto_Ndax() {
   const { isLoading, data, error } = useQuery({
-    queryKey: ['crypto_Ndax'],
+    queryKey: ["crypto_Ndax"],
     queryFn: fetchCrypto_Ndax,
     refetchInterval: 20000,
   });
@@ -12,7 +13,7 @@ export function useQueryCrypto_Ndax() {
 
 async function fetchCrypto_Ndax() {
   try {
-    const response = await fetch('http://localhost:3000/api/trade');
+    const response = await fetch(`${config.BACKEND_URL}/api/trade`);
     if (!response.ok) {
       throw new Error(`An error occurred: ${response.statusText}`);
     }
@@ -21,6 +22,6 @@ async function fetchCrypto_Ndax() {
     console.log(result);
     return result;
   } catch (error) {
-    console.log('Failed to fetch crypto', error);
+    console.log("Failed to fetch crypto", error);
   }
 }

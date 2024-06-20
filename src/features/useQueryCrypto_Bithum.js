@@ -1,8 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
+import config from "../config";
+
+console.log(`${config.BACKEND_URL}/api/premium/Bithum`);
 
 export function useQueryCrypto_Bithum() {
   const { isLoading, data, error } = useQuery({
-    queryKey: ['crypto_Bithum'],
+    queryKey: ["crypto_Bithum"],
     queryFn: fetchCrypto_Bithum,
     refetchInterval: 30000,
   });
@@ -12,7 +15,7 @@ export function useQueryCrypto_Bithum() {
 
 async function fetchCrypto_Bithum() {
   try {
-    const response = await fetch('http://localhost:3000/api/premium/Bithum');
+    const response = await fetch(`${config.BACKEND_URL}/api/premium/Bithum`);
     if (!response.ok) {
       throw new Error(`An error occurred: ${response.statusText}`);
     }
@@ -27,6 +30,6 @@ async function fetchCrypto_Bithum() {
 
     return result.data;
   } catch (error) {
-    console.log('Failed to fetch crypto', error);
+    console.log("Failed to fetch crypto", error);
   }
 }

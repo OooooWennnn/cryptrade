@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import Button from "./Button";
 import Logo from "./Logo";
 import { useAuth } from "../context/AuthContext";
+import config from "../config";
 
 const inputStyle =
   "border-b border-gray-300 px-2 focus:outline-none focus:border-b-indigo-600";
@@ -18,7 +19,7 @@ function LoginForm({ onClick }) {
   const { login } = useAuth();
 
   const onSubmit = async (data) => {
-    const response = await fetch("http://localhost:3000/api/auth/login", {
+    const response = await fetch(`${config.BACKEND_URL}/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",

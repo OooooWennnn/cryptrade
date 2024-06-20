@@ -3,6 +3,7 @@ import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 import { Chart } from "chart.js";
 import zoomPlugin from "chartjs-plugin-zoom";
+import config from "../../config";
 // import 'chartjs-adapter-date-fns';
 
 Chart.register(zoomPlugin);
@@ -19,7 +20,7 @@ function CryptoChart({ selectedCoin }) {
       const body = { symbol: selectedCoin };
       async function getCoinHistory() {
         const response = await fetch(
-          "http://localhost:3000/api/trade/history",
+          `${config.BACKEND_URL}/api/trade/history`,
           {
             method: "POST",
             headers: {
