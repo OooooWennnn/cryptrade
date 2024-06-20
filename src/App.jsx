@@ -46,9 +46,9 @@ function App() {
                 <Route
                   path="trade"
                   element={
-                    <ProtectedRoute>
-                      <Trade />
-                    </ProtectedRoute>
+                    // <ProtectedRoute>
+                    <Trade />
+                    // </ProtectedRoute>
                   }
                 />
                 <Route
