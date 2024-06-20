@@ -1,5 +1,5 @@
 const config = {
-  BACKEND_URL: "cryptrade-backend.vercel.app",
+  BACKEND_URL: "https://cryptrade-backend.vercel.app",
 };
 
 export default config;
